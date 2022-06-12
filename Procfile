@@ -1,0 +1,1 @@
+web: gunicorn EltonJohnsBank.wsgi --log-file -
