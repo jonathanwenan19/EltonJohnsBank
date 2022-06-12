@@ -1,0 +1,9 @@
+{%extends "base.html"%}
+{%load static%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class = "logout">
+    <strong>You have logged out!</strong><br>
+    <span>Do you want to log in again? <a href = {% url 'bank-login'%}>Login</span>
+</div>
+{% endblock content %}

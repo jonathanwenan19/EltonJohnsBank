@@ -1,0 +1,45 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+            <title>Elton John Banks</title>
+            <link rel = "stylesheet" type ="text/css"  href ="{% static 'basestyle.css'%}">
+            <link href='https://fonts.googleapis.com/css?family=Cinzel Decorative' rel='stylesheet'>
+            <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+            <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'></head>
+    </head>
+    <body>
+        <div class = "container">
+          
+        
+                
+         
+            
+            {%block content%}
+                
+            {%endblock %}
+            <div class = "navbar">
+                <h1>EJBC</h1>
+                {%if user.is_authenticated%}
+                <h2 class="balance">Total Balance</h2>
+                <h2 class="balance-amount">Rp. {{user.profile.balance}}</h1>
+                    {%endif%}
+                    <a href="{%url 'bank-home'%}">Home</a>
+                    <a href = "{%url 'bank-transactions'%}">Transactions</a>
+                    <a href="{%url 'bank-history'%}">History</a>
+                    <a href="{%url 'bank-profiles'%}">Profile</a>
+                    <a href = "{%url 'bank-nodeflux'%}">Nodeflux</a>
+                    {% if user.is_authenticated %}
+                    <a href = "{%url 'bank-logout'%}">Log out</a>
+                    {% else %}
+                    <a href = "{%url "bank-login"%}">Log in</a>
+                    <a href="{%url 'bank-signup'%}">Sign up</a>
+                    {% endif %}
+                    
+            </div>
+
+            
+        </div>
+                
+    </body>
+</html>

@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+{%load static%}
+ {%block content%}
+    
+         {%if user.is_authenticated%}
+         <div class = "history">
+        <h1>History<h1>
+        {%for transactions in trans%}
+            <div class = "history-box">
+                <!--<p>Payment ID:<br> {{transactions.payment_id}}</p>-->
+                <p>Receiver's Number:<br> {{transactions.receiver_no}}</p>
+                <p>Amount:<br> {{transactions.amount}}</p>
+                <p>Notes: <br>{{transactions.notes}}</p>
+            </div>
+        {%endfor%}
+    </div>
+        {%else%}
+            <div class = "mustlogin">
+                <span>You must log in to your account <a href= "{%url 'bank-login'%}">Log in</a></span>
+            </div>
+        {%endif%}
+
+ 
+{% endblock content %}

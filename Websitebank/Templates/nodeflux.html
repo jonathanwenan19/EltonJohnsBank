@@ -1,0 +1,32 @@
+{%extends "base.html"%}
+{%load static%}
+{%load crispy_forms_tags%}
+{%block content%}
+{%if user.is_authenticated%}
+<div class = "transactions">
+    {%if messages%}
+    {% for message in messages %}
+        <div class = "alert alert-{{message.tags}}">
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        </div>
+        {% endfor %}
+    {%endif%}
+    <h1>Nodeflux Transaction</h1>
+    <form method = "POST" enctype = "multipart/form-data">
+        {% csrf_token %}
+        
+        {{nodeflux_form.as_p}}
+        <br>
+        {{payforms|crispy}}
+        <br>
+        <button class="btn btn-dark my-4" type="submit">Submit</button>
+    </form>
+</div>
+    {%else%}
+<div class = "mustlogin">
+    <span>You must log in to your account <a href= "{%url 'bank-login'%}">Log in</a></span>
+</div>
+{%endif%}
+
+
+{% endblock content %}

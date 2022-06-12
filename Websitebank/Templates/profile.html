@@ -1,0 +1,28 @@
+{%extends "base.html"%}
+{%load static%}
+{%load crispy_forms_tags%}
+{%block content%}
+
+{%if user.is_authenticated%}
+<div class = "profile">
+     <h1>Profile</h1>
+     <img src = {{user.profilepic.image.url}}> 
+     <h1>Username:{{user.username}} </h1>
+     <h1>Balance:Rp. {{user.profile.balance}}</h1>
+     <form method ="POST" enctype = "multipart/form-data">
+          {% csrf_token %}
+          <h1>Update Photo!</h1>
+         
+          {{user_form|crispy}}
+          <button type = "submit">Upload</button>
+          {{pic_form|crispy}}
+          <button type="submit">Submit</button>
+     </form>
+</div> 
+{%else%}
+<div class = "mustlogin">
+     <span>You must log in to your account <a href= "{%url 'bank-login'%}">Log in</a></span>
+</div>
+{%endif%}
+
+{% endblock content %}

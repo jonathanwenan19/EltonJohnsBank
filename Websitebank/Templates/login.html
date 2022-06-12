@@ -1,0 +1,39 @@
+
+ 
+  {%extends "base.html"%}
+  {%load static%}
+  {%load crispy_forms_tags%}
+ {%block content%}
+    {%if messages%}
+    {%for message in messages%}
+        <div class = "alert alert-{{message.tags}} msg fade show" role="alert">
+            <!-- <div class="alert alert-success alert-dismissible fade show" role="alert"> -->
+                {{message}}
+                <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button> -->
+            </div>
+        <!-- </div> -->
+    {% endfor %}
+    {%endif%}
+<div class = "login-page">
+    <h2 class="brand-auth">EJBC</h2>
+    <form method= "POST" class="form">
+        {% csrf_token %}
+        {{ form.username|as_crispy_field }}
+       {{ form.password|as_crispy_field }}
+
+        <button type="submit">Login</button>
+    </form>
+    <div class="gotosignup">
+        <a href="/signup" class="link">Don't have an account? <span>Sign up</span></div>
+    </div>
+</div>
+{%endblock content%}
+ 
+
+ 
+
+
+      
+   

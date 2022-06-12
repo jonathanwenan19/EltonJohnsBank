@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+{%load static%}
+ {%block content%}
+ <div class = "home">
+    <h1 class="brand-auth">EJBC</h2>
+     <h1>Welcome to EltonJohn Banks!</h1>
+     {%if user.is_authenticated%}
+        <h2>Start transferring money!</h2>
+        <div class = "ifloggedin">
+            <a href = "{%url "bank-transactions"%}">Transfer</a>
+        </div>
+    {%else%}
+     <h2> You have not logged in yet! Do you want to log in?<h2>
+        <div class = "choicebuttons">   
+           <a href= "{%url 'bank-login'%}">Log in</a>
+           <a href = "{%url 'bank-signup'%}">Create an Account</a>
+        </div>
+    
+     {%endif%}
+    </div>
+    
+{% endblock content %}

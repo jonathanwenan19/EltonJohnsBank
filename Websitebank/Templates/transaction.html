@@ -1,0 +1,34 @@
+{%extends "base.html"%}
+{%load static%}
+{%load crispy_forms_tags%}
+{%block content%}
+
+{%if user.is_authenticated%}
+<div class = "transactions">
+    {%if messages%}
+        {%for message in messages%}
+            <div class = "alert alert-{{message.tags}}">
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            </div>
+        {% endfor %}
+    {%endif%}
+    <form method= "POST">
+        {% csrf_token %}
+        <h1>Payments</h1>
+        {{ forms }}
+        <br>
+        <span>Please enter your PIN</span>
+        <input type = "password" placeholder = "Please type PIN!" name = "pin">
+        
+        <button type="submit">Do Transaction</button>
+       <!-- <span>If you do not have an account,<a href = "{%url 'bank-signup'%}"> Sign in!</a></span>-->
+    </form>
+</div>
+{%else%}
+<div class = "mustlogin">
+    <span>You must log in to your account <a href= "{%url 'bank-login'%}">Log in</a></span>
+</div>
+{%endif%}
+
+
+{% endblock content %}
